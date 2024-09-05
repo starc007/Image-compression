@@ -1,0 +1,11 @@
+[package]
+name = "image-compressor"
+version = "0.1.0"
+edition = "2021"
+authors = ["Saurabh saurabh10102@gmail.com"]
+description = "A CLI tool for compressing images in a directory"
+
+[dependencies]
+image = "0.24"
+walkdir = "2.3"
+clap = { version = "4.0", features = ["derive"] }
