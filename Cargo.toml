@@ -1,5 +1,5 @@
 [package]
-name = "image-compressor"
+name = "image_compressor_cli"
 version = "0.1.0"
 edition = "2021"
 authors = ["Saurabh saurabh10102@gmail.com"]

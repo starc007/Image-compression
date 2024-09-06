@@ -9,7 +9,7 @@ pub fn process_directory(input_dir: &Path, output_dir: &Path, quality: u8) -> Re
         let path = entry.path();
         if path.is_file() {
             if let Some(extension) = path.extension() {
-                if ["jpg", "jpeg", "png"].contains(&extension.to_str().unwrap_or("")) {
+                if utils::is_supported_format(extension) {
                     let relative_path = path.strip_prefix(input_dir)?;
                     let output_path = output_dir.join(relative_path);
                     
@@ -46,10 +46,9 @@ fn compress_image(input_path: &Path, output_path: &Path, quality: u8) -> Result<
             let mut output_file = std::fs::File::create(output_path)?;
             resized.write_to(&mut output_file, image::ImageOutputFormat::Png)?;
         },
-        _ => return Err(image::ImageError::Unsupported(image::error::UnsupportedError::from_format_and_kind(
-            image::error::ImageFormatHint::Unknown,
-            image::error::UnsupportedErrorKind::Format(image::error::ImageFormatHint::Unknown)
-        ))),
+        _ => {
+            resized.save_with_format(output_path, output_format)?;
+        },
     }
     
     Ok(())
