@@ -4,6 +4,19 @@ use walkdir::WalkDir;
 
 use crate::utils;
 
+/**
+ * Process all images in the given directory and its subdirectories
+ * 
+ * # Arguments
+ * 
+ * * `input_dir` - The path to the input directory
+ * * `output_dir` - The path to the output directory
+ * * `quality` - The quality setting for JPEG compression (0-100)
+ * 
+ * # Returns
+ * 
+ * A Result indicating success or containing an error
+ */
 pub fn process_directory(input_dir: &Path, output_dir: &Path, quality: u8) -> Result<(), Box<dyn std::error::Error>> {
     for entry in WalkDir::new(input_dir).into_iter().filter_map(|e| e.ok()) {
         let path = entry.path();
@@ -26,6 +39,19 @@ pub fn process_directory(input_dir: &Path, output_dir: &Path, quality: u8) -> Re
     Ok(())
 }
 
+/**
+ * Compress a single image
+ * 
+ * # Arguments
+ * 
+ * * `input_path` - The path to the input image
+ * * `output_path` - The path where the compressed image will be saved
+ * * `quality` - The quality setting for JPEG compression (0-100)
+ * 
+ * # Returns
+ * 
+ * A Result indicating success or containing an ImageError
+ */
 fn compress_image(input_path: &Path, output_path: &Path, quality: u8) -> Result<(), image::ImageError> {
     let img = image::open(input_path)?;
     

@@ -4,6 +4,16 @@ mod utils;
 
 use std::path::Path;
 
+/**
+ * The main function of the image compressor CLI tool.
+ * 
+ * This function does the following:
+ * 1. Parses command-line arguments
+ * 2. Checks if the input directory exists
+ * 3. Creates the output directory if it doesn't exist
+ * 4. Initiates the image compression process
+ * 5. Prints a completion message
+ */
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let opts = cli::parse_args();
     

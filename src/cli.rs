@@ -1,9 +1,8 @@
-
-//! Command-line interface parsing module.
-
 use clap::Parser;
 
-/// Struct to hold command-line arguments
+/**
+ * Struct to hold command-line arguments
+ */
 #[derive(Parser)]
 #[clap(version = "1.0", author = "Your Name", about = "Compresses images in a folder")]
 pub struct Opts {
@@ -20,7 +19,16 @@ pub struct Opts {
     pub quality: u8,
 }
 
-/// Parse command-line arguments
+/**
+ * Parse command-line arguments
+ * 
+ * This function uses the clap crate to parse command-line arguments
+ * based on the Opts struct definition.
+ * 
+ * # Returns
+ * 
+ * An instance of Opts containing the parsed command-line arguments
+ */
 pub fn parse_args() -> Opts {
     Opts::parse()
 }
