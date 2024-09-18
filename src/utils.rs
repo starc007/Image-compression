@@ -16,8 +16,7 @@ use std::ffi::OsStr;
  *
  * A tuple containing the new width and height
  */
-pub fn calculate_new_dimensions(width: u32, height: u32) -> (u32, u32) {
-    let max_dimension = 1280;
+pub fn calculate_new_dimensions(width: u32, height: u32, max_dimension: u32) -> (u32, u32) {
     if width > height {
         let new_width = width.min(max_dimension);
         let new_height = (height as f32 * (new_width as f32 / width as f32)) as u32;

@@ -9,3 +9,8 @@ description = "A CLI tool for compressing images in a directory"
 image = "0.24"
 walkdir = "2.3"
 clap = { version = "4.0", features = ["derive"] }
+indicatif = "0.17"
+oxipng = "8.0"
+log = "0.4"
+env_logger = "0.10"
+rayon = "1.5"

@@ -17,6 +17,10 @@ pub struct Opts {
     /// Compression quality (0-100)
     #[clap(short, long, default_value = "85")]
     pub quality: u8,
+
+     /// Maximum image dimension
+    #[clap(long, default_value = "1280")]
+    pub max_dimension: u32,
 }
 
 /**
