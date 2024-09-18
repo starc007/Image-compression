@@ -9,6 +9,10 @@ A command-line tool for compressing and resizing images in bulk. This tool can p
 - Maintain original folder structure in the output
 - Adjustable compression quality for JPEG images
 - Automatic format detection and preservation
+- Parallel processing for improved performance
+- Progress bar to show compression status
+- Configurable maximum image dimension
+- Lossless compression for PNG files using oxipng
 
 ## Installation
 
@@ -40,14 +44,15 @@ image_compressor_cli [OPTIONS]
 
 ### Options:
 
-- `-i, --input <INPUT>`: Input directory path [default: .]
-- `-o, --output <OUTPUT>`: Output directory path [default: compressed_images]
-- `-q, --quality <QUALITY>`: Compression quality (0-100) [default: 85]
+- `--input <INPUT>`: Input directory path [default: .]
+- `--output <OUTPUT>`: Output directory path [default: compressed_images]
+- `--quality <QUALITY>`: Compression quality (0-100) [default: 85]
+- `--max-dimension <MAX_DIMENSION>`: Maximum image dimension [default: 1920]
 
 ### Example:
 
 ```
-./target/release/image_compressor_cli --input /path/to/input/folder --output /path/to/output/folder --quality 75
+./target/release/image_compressor_cli --input /path/to/input/folder --output /path/to/output/folder --quality 85 --max-dimension 1920
 ```
 
 This command will compress all supported images in the input folder and its subfolders, saving the compressed images to the output folder while maintaining the original folder structure.
@@ -57,8 +62,10 @@ This command will compress all supported images in the input folder and its subf
 1. The tool scans the input directory and all its subdirectories for supported image formats.
 2. Each image is resized if its dimensions exceed the maximum allowed (currently set to 1280 pixels for the longest side).
 3. JPEG images are compressed using the specified quality setting.
-4. Other formats are resized (if necessary) and saved with their original format.
-5. The compressed images are saved in the output directory, maintaining the original folder structure.
+4. PNG images are optimized using oxipng for lossless compression.
+5. Other formats are resized (if necessary) and saved with their original format.
+6. The compressed images are saved in the output directory, maintaining the original folder structure.
+7. The tool uses parallel processing to compress multiple images simultaneously, improving performance on multi-core systems.
 
 ## Supported Formats
 
